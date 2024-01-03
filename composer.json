@@ -1,0 +1,6 @@
+{
+    "name": "root/www",
+    "require": {
+        "predis/predis": "^2.2"
+    }
+}
