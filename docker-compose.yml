@@ -16,7 +16,6 @@ services:
         build: ./dockerfiles/php
         volumes:
             - ./:/usr/share/nginx/www
-        env_file: .env
 
     mariadb:
         container_name: "${MARIADB_CONTAINER_NAME}"

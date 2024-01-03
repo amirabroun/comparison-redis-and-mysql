@@ -23,6 +23,8 @@ RUN pecl install xdebug && \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 # Create a group and user to run the application
 RUN groupadd -g 1000 www && \
     useradd -u 1000 -ms /bin/bash -g www www
@@ -32,6 +34,8 @@ WORKDIR /usr/share/nginx/www
 
 # Copy the application files to the container and set the ownership
 COPY --chown=www:www . .
+
+USER www
 
 # Define the command to start the PHP-FPM server
 CMD ["php-fpm"]
