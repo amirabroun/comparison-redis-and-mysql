@@ -11,24 +11,24 @@ function redis()
     return $redis;
 }
 
-function insertDataWithRedis()  {
-    
+function insertDataWithRedis()
+{
     $startTime = microtime(true);
     redis()->set('foo', 'bar');
     $endTime = microtime(true);
-    
+
     $setTime =  (float) number_format($endTime - $startTime, 5);
 
     return $setTime;
 }
 
-function getDataFromRedis() {
+function getDataFromRedis()
+{
     $startTime = microtime(true);
     $value = redis()->get('foo');
     $endTime = microtime(true);
-    
+
     $getTime = (float) number_format($endTime - $startTime, 5);
 
     return [$getTime, $value];
 }
-
