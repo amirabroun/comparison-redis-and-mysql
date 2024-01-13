@@ -5,9 +5,9 @@ require __DIR__ . '/../vendor/autoload.php';
 $selectedDataBase = 'mysql';
 
 if ($selectedDataBase == 'redis') {
-    $insertTime = insertDataWithRedis();
+    [$insertTime, $id] = insertDataWithRedis();
 
-    [$selectTime, $result] = getDataFromRedis();
+    [$selectTime, $result] = getDataFromRedis($id);
 
     var_dump([
         'Run time for set data:' => $insertTime,

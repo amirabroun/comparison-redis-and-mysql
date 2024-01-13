@@ -13,19 +13,21 @@ function redis()
 
 function insertDataWithRedis()
 {
+    $id = rand(0, 100);
+
     $startTime = microtime(true);
-    redis()->set('foo', 'bar');
+    redis()->set($id, "[fateme][soosfi][fatemeSoofi][null][12345678]");
     $endTime = microtime(true);
 
-    $setTime =  (float) number_format($endTime - $startTime, 5);
+    $setTime = (float) number_format($endTime - $startTime, 5);
 
-    return $setTime;
+    return [$setTime, $id];
 }
 
-function getDataFromRedis()
+function getDataFromRedis($id)
 {
     $startTime = microtime(true);
-    $value = redis()->get('foo');
+    $value = redis()->get($id);
     $endTime = microtime(true);
 
     $getTime = (float) number_format($endTime - $startTime, 5);
