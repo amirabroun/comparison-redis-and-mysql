@@ -2,27 +2,16 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$selectedDataBase = 'mysql';
+$selectedDataBase = 'redis';
 
 if ($selectedDataBase == 'redis') {
-    [$insertTime, $id] = insertDataWithRedis();
+    require './databases/redis.php';
 
-    [$selectTime, $result] = getDataFromRedis($id);
-
-    var_dump([
-        'Run time for set data:' => $insertTime,
-        'Run time for get data:' => $selectTime,
-        'data' => $result,
-    ]);
+    testRedis();
 }
 
 if ($selectedDataBase == 'mysql') {
-    $insertTime = insertDataTime();
-    [$selectTime, $result] = selectTime();
+    require './databases/redis.php';
 
-    var_dump([
-        'Run time for set data:' => $insertTime,
-        'Run time for get data:' => $selectTime,
-        'data' => $result,
-    ]);
+    testMysql();
 }

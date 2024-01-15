@@ -1,11 +1,5 @@
 {
     "name": "root/www",
-    "autoload": {
-        "files": [
-            "public/databases/mysql.php",
-            "public/databases/redis.php"
-        ]
-    },
     "require": {
         "predis/predis": "^2.2"
     }

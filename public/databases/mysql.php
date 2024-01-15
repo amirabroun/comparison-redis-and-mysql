@@ -38,8 +38,8 @@ function pdo()
                 username VARCHAR(255),
                 address VARCHAR(255),
                 password VARCHAR(255)
-            )
-        ";
+            )";
+
             $PDO->exec($createTableQuery);
         }
     } catch (\PDOException $error) {
@@ -72,8 +72,19 @@ function selectTime()
     $result = pdo()->query($query, PDO::FETCH_OBJ)->fetchAll();
     $endTime = microtime(true);
 
-    var_dump(count($result));
     $selectTime = (float) number_format($endTime - $startTime, 5);
 
     return [$selectTime, $result];
+}
+
+function testMysql()
+{
+    $insertTime = insertDataTime();
+    [$selectTime, $result] = selectTime();
+
+    var_dump([
+        'Run time for set data:' => $insertTime,
+        'Run time for get data:' => $selectTime,
+        'data' => $result,
+    ]);
 }
